@@ -16,16 +16,17 @@ public class bubbleBehav : MonoBehaviour
     {
         item.GetComponent<sillyStuff>().isBub = true;
         var target = gameObject.transform;
-        float elapsedTime = 0;
+        float elapsedTime = 0f;
         float timeToMove = 3.0f;
-        while (item.transform.position != target.position)
+        while (elapsedTime < timeToMove)
         {
             float t = elapsedTime / timeToMove;
             item.transform.position = new Vector3(Mathf.Lerp(item.transform.position.x, target.position.x, t), Mathf.Lerp(item.transform.position.y, target.position.y, t), Mathf.Lerp(item.transform.position.z, target.position.z, t));
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
-        item.GetComponent<turmoil>().targ = new Vector3(rand.Range(-3, 3), rand.Range(-3, 3), 0);
+        
+        item.GetComponent<turmoil>().targ = new Vector3((float)rand.Range(-3, 3), (float)rand.Range(-3, 3), 0f);
         item.GetComponent<turmoil>().turm(3f);
         
     }
