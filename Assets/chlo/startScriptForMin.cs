@@ -25,9 +25,11 @@ void OnCollisionEnter(Collision collision)
         foreach (ContactPoint contact in collision.contacts)
         {
            // Debug.DrawRay(contact.point, contact.normal, Color.white);
-            Debug.Log("" + contact.point);
-            contact.otherCollider.gameObject.GetComponent<turmoil>().targ = contact.point * 2;
-            contact.otherCollider.gameObject.GetComponent<turmoil>().turm(3f);
+            Debug.Log("damag" + contact.point);
+            var gm = contact.otherCollider.gameObject;
+            gm.GetComponent<sillyStuff>().healthGetter(gm.name, 10);
+            gm.GetComponent<turmoil>().targ = contact.point * 2;
+            gm.GetComponent<turmoil>().turm(3f);
 /*
 code for cancelling player movement
 */
