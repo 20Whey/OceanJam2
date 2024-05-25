@@ -9,10 +9,6 @@ public class vaccumPickup : MonoBehaviour
     public float rad;
     [SerializeField] Collider[] nearbyColliders;
     // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     public IEnumerator moveToSucc(GameObject item)
     {
@@ -29,13 +25,9 @@ public class vaccumPickup : MonoBehaviour
         Destroy(item);
     }
 
-    // Update is called once per frame
-
-
     public int returnExperience(params Collider[] colliders)
     {
         int val = 0;
-
         foreach (var item in colliders)
         {
             bool bol = false;
@@ -71,7 +63,7 @@ public class vaccumPickup : MonoBehaviour
         nearbyColliders = Physics.OverlapSphere(transform.position, rad, 3);
         if (nearbyColliders != null)
         {
-            Debug.Log(returnExperience(nearbyColliders));
+            GameObject.Find("Canvas").transform.GetChild(0).GetComponent<PlayerExp>().AddExperience(returnExperience(nearbyColliders));
         }
     }
 }

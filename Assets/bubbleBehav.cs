@@ -45,8 +45,10 @@ public class bubbleBehav : MonoBehaviour
         {
            /* if (item.gameObject.tag != "hasBubbled" && item.gameObject.tag == "canBubble")
             {*/
-                if (!item.gameObject.GetComponent<sillyStuff>().isBub)
+                if (item.gameObject.GetComponent<sillyStuff>() != null){
+                if(!item.gameObject.GetComponent<sillyStuff>().isBub)
                  StartCoroutine(moveToSucc(item.gameObject));
+                }
             //}
         }
     }

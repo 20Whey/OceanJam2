@@ -23,7 +23,13 @@ public class turmoil : MonoBehaviour
             elpsedT += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
-        rb.angularDrag = 0f;
+
+        rb.angularVelocity = Vector3.zero;
+        gameObject.GetComponent<sillyStuff>().tm = false;
+
+       // rb.angularDrag = 3f;
+      /* Vector3 eulerAngles = transform.eulerAngles;
+		transform.eulerAngles = new Vector3( eulerAngles.x , 0f , eulerAngles.z );*/
     }
 
 
@@ -35,11 +41,11 @@ public class turmoil : MonoBehaviour
             elpsedT += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
-        turnToReg = true;
+        StartCoroutine(Return(3f, 0.1f));
     }
     public void turm(float del)
     {
-        rb = gameObject.GetComponent<Rigidbody>();
+        gameObject.GetComponent<sillyStuff>().tm = true;
         gameObject.transform.LookAt(targ);
         rb.AddForce(transform.forward * vel * 30);
         rb.AddTorque(-transform.up * 3f * Random.Range(-10, 10));
@@ -48,24 +54,24 @@ public class turmoil : MonoBehaviour
     }
     void Awake()
     {
-        //turm();
+        rb = gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        
+        /*
         if (turnToReg == true)
         {
             StartCoroutine(Return(3f, 0.1f));
             turnToReg = false;
+            
         }
         //Vector3 newDirection = Vector3.RotateTowards(transform.forward, targ, singleStep, 0.0f);
         if (transform.rotation == Quaternion.Euler(0f, 0f, 0f))
         {
-            turnToReg = false;
-
-        }
+            rb.angularVelocity = Vector3.zero;
+        }*/
     }
 }

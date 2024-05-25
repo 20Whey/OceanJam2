@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public float playerAcceleration = 10f;
     public float playerRotateSpeed = 0.3f;
     public float dashBoost = 1.5f;
-
+    private bool nTm;
     public Transform bulletSpawnPoint;
     public GameObject bulletObject;
     public float bulletSpeed = 10;
@@ -21,16 +21,18 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRB = GetComponent<Rigidbody>();
+        nTm = gameObject.GetComponent<sillyStuff>().tm;
     }
 
 
     void Update()
     {
+        if (!nTm){
         moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
-
         RotatePlayer();
         Dash();
         Shoot();
+        }
     }
 
 	void FixedUpdate()
@@ -41,6 +43,7 @@ public class PlayerController : MonoBehaviour
     void RotatePlayer()
 	{
         //Face Mouse
+        
         var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         Quaternion rotateAngle = Quaternion.AngleAxis(angle, Vector3.forward);
