@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe81e6f2fcede94db1c98f9b6acfa94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rad: 5
+  rad: 30
   nearbyColliders: []
 --- !u!1 &41234183
 GameObject:
