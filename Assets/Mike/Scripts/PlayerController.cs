@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
-{
+
+    {
     public float playerHealth = 100f;
     public float playerDamage = 10f;
     public float playerAcceleration = 10f;

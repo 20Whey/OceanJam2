@@ -24,15 +24,16 @@ void OnCollisionEnter(Collision collision)
     {
         foreach (ContactPoint contact in collision.contacts)
         {
-            Debug.DrawRay(contact.point, contact.normal, Color.white);
+           // Debug.DrawRay(contact.point, contact.normal, Color.white);
             Debug.Log("" + contact.point);
+            contact.otherCollider.gameObject.GetComponent<turmoil>().targ = contact.point * 2;
+            contact.otherCollider.gameObject.GetComponent<turmoil>().turm(3f);
 /*
 code for cancelling player movement
 */
 
         }
-        if (collision.relativeVelocity.magnitude > 2)
-          Debug.Log("hit em hard"); 
+        
           //  audioSource.Play();
          
     }
