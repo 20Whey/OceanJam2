@@ -4,20 +4,35 @@ using UnityEngine;
 
 public class basicGarbFollow : MonoBehaviour
 {
-    // Start is called before the first frame update
-  
     public Transform target;
     public Rigidbody rb;
+    public float moveSpeed = 1000f;
+    public float maxForce = 10f; // Maximum force that can be applied
 
-    // Update is called once per frame
-
-    void Awake() {
-      rb = gameObject.GetComponent<Rigidbody>();
+    void Awake()
+    {
+        rb = gameObject.GetComponent<Rigidbody>();
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
+
     void Update()
     {
-    //  Vector3 targetPostition = new Vector3( target.position.x , target.position.y, this.transform.position.z ) ;
-     transform.LookAt( target ) ;
-     rb.AddForce(transform.forward);
+        // Ensure the target is not null
+        if (target != null)
+        {
+            transform.LookAt(target);
+
+            // Calculate the force to be applied
+            Vector3 force = transform.forward * moveSpeed * Time.deltaTime;
+
+            // Clamp the force to the maximum limit
+            if (force.magnitude > maxForce)
+            {
+                force = force.normalized * maxForce;
+            }
+
+            // Apply the clamped force
+            rb.AddForce(force);
+        }
     }
 }
