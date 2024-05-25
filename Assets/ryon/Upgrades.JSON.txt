@@ -1,0 +1,5 @@
+[
+    {"name": "Upgrade1", "description": "Increases speed", "value": 10},
+    {"name": "Upgrade2", "description": "Increases health", "value": 20},
+    {"name": "Upgrade3", "description": "Increases strength", "value": 15}
+]
