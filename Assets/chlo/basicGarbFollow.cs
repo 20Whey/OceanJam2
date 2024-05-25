@@ -1,23 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class basicGarbFollow : MonoBehaviour
 {
-    // Start is called before the first frame update
-  
-    public Transform target;
-    public Rigidbody rb;
+    public Transform player; // Reference to the player's transform
+    public float speed = 5f; // Speed of the enemy movement
 
-    // Update is called once per frame
-
-    void Awake() {
-      rb = gameObject.GetComponent<Rigidbody>();
+    void Start()
+    {
+        if (player == null)
+        {
+            player = GameObject.FindWithTag("Player").transform; // Find the player by tag if not set
+        }
     }
+
     void Update()
     {
-    //  Vector3 targetPostition = new Vector3( target.position.x , target.position.y, this.transform.position.z ) ;
-     transform.LookAt( target ) ;
-     rb.AddForce(transform.forward);
+        MoveTowardsPlayer();
+    }
+
+    void MoveTowardsPlayer()
+    {
+        if (player != null)
+        {
+            // Calculate the direction from the enemy to the player
+            Vector3 direction = (player.position - transform.position).normalized;
+
+            // Move the enemy towards the player
+            transform.LookAt(player);
+
+            transform.position += direction * speed * Time.deltaTime;
+        }
     }
 }
