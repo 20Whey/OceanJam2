@@ -6,7 +6,7 @@ public class BulletBehavior : MonoBehaviour
 {
 	[SerializeField] private float destroyTime = 1f;
 	private Coroutine _returnToPoolTimer;
-
+	public EnemyScript enemyScript;
 	private void OnEnable()
 	{
 		_returnToPoolTimer = StartCoroutine(ReturnToPoolDelayed());
