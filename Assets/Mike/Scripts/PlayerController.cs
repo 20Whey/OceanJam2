@@ -10,6 +10,10 @@ public class PlayerController : MonoBehaviour
     public float playerRotateSpeed = 0.3f;
     public float dashBoost = 1.5f;
 
+    public Transform bulletSpawnPoint;
+    public GameObject bulletObject;
+    public float bulletSpeed = 10;
+
     private Vector2 moveDirection;
     private Rigidbody playerRB;
 
@@ -25,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
         RotatePlayer();
         Dash();
-
+        Shoot();
     }
 
 	void FixedUpdate()
@@ -42,6 +46,14 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, rotateAngle, playerRotateSpeed);
     }
 
+    void Shoot()
+	{
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+		{
+            GameObject bullet = ObjectPoolManager.SpawnObject(bulletObject, bulletSpawnPoint.position, bulletSpawnPoint.rotation, ObjectPoolManager.PoolType.Projectiles);
+            bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.up * bulletSpeed;
+		}
+	}
     void Dash()
 	{
         if (Input.GetKey(KeyCode.Space))
