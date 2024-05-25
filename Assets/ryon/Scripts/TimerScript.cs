@@ -34,7 +34,7 @@ public class TimerScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("Game Over");
+            //Debug.Log("Game Over");
         }
     }
 

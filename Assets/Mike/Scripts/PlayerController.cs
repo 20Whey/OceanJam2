@@ -17,17 +17,19 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 moveDirection;
     private Rigidbody playerRB;
+    private bool Stunned;
 
     void Start()
     {
         playerRB = GetComponent<Rigidbody>();
-        nTm = gameObject.GetComponent<sillyStuff>().tm;
+        Stunned = gameObject.GetComponent<sillyStuff>().tm;
     }
 
 
     void Update()
     {
-        if (!nTm){
+        if (!Stunned)
+        {
         moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
         RotatePlayer();
         Dash();
