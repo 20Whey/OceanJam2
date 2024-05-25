@@ -6,7 +6,7 @@ public class BulletBehavior : MonoBehaviour
 {
 	[SerializeField] private float destroyTime = 1f;
 	private Coroutine _returnToPoolTimer;
-	public EnemyScript enemyScript;
+
 	private void OnEnable()
 	{
 		_returnToPoolTimer = StartCoroutine(ReturnToPoolDelayed());
@@ -22,12 +22,12 @@ public class BulletBehavior : MonoBehaviour
 
 		ObjectPoolManager.ReturnObjectToPool(gameObject);
 	}
-	private void OnCollisionEnter(Collision collision)
+	void OnTriggerEnter(Collider collision)
 	{
 		if (collision.transform.tag == "Enemy")
 		{
-			// do damage here, for example:
 			collision.gameObject.GetComponent<EnemyScript>().TakeDamage(5);
+			ObjectPoolManager.ReturnObjectToPool(gameObject);
 		}
 	}
 }

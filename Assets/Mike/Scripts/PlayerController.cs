@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float playerDamage = 10f;
     public float playerAcceleration = 10f;
     public float playerRotateSpeed = 0.3f;
-    public float dashBoost = 1.5f;
+    public float dashBoost = 0.1f;
 
     public Transform bulletSpawnPoint;
     public GameObject bulletObject;
