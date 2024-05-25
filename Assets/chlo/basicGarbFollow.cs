@@ -1,38 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class basicGarbFollow : MonoBehaviour
 {
-    public Transform target;
-    public Rigidbody rb;
-    public float moveSpeed = 1000f;
-    public float maxForce = 10f; // Maximum force that can be applied
+    public Transform player; // Reference to the player's transform
+    public float speed = 5f; // Speed of the enemy movement
 
-    void Awake()
+    void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody>();
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        if (player == null)
+        {
+            player = GameObject.FindWithTag("Player").transform; // Find the player by tag if not set
+        }
     }
 
     void Update()
     {
-        // Ensure the target is not null
-        if (target != null)
+        MoveTowardsPlayer();
+    }
+
+    void MoveTowardsPlayer()
+    {
+        if (player != null)
         {
-            transform.LookAt(target);
+            // Calculate the direction from the enemy to the player
+            Vector3 direction = (player.position - transform.position).normalized;
 
-            // Calculate the force to be applied
-            Vector3 force = transform.forward * moveSpeed * Time.deltaTime;
+            // Move the enemy towards the player
+            transform.LookAt(player);
 
-            // Clamp the force to the maximum limit
-            if (force.magnitude > maxForce)
-            {
-                force = force.normalized * maxForce;
-            }
-
-            // Apply the clamped force
-            rb.AddForce(force);
+            transform.position += direction * speed * Time.deltaTime;
         }
     }
 }
