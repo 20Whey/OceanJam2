@@ -5,7 +5,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyPrefab;
     public CameraBoundsCalculator cameraBoundsCalculator;
     public float spawnDistance = 2.0f; // Distance from the camera bounds to spawn enemies
-
+    public TimerScript timerScript;
     void Start()
     {
         if (cameraBoundsCalculator == null)
@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
             cameraBoundsCalculator = FindObjectOfType<CameraBoundsCalculator>();
         }
 
-        InvokeRepeating("SpawnEnemy", 2.0f, 5.0f); // Example: spawn an enemy every 5 seconds
+        InvokeRepeating("SpawnEnemy", 2.0f, timerScript.difficulty); // Example: spawn an enemy every 5 seconds
     }
 
     void SpawnEnemy()

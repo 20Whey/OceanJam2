@@ -10,6 +10,10 @@ TagManager:
   - canBubble
   - hasBubbled
   - Enemy
+  - Title
+  - Desc
+  - Image
+  - Health
   layers:
   - Default
   - TransparentFX
