@@ -21,52 +21,61 @@ public class shootingEnemy : MonoBehaviour
         hasFired = false;
         dmg = 8;
         healthScript = GameObject.FindGameObjectWithTag("Health").GetComponent<HealthScript>();
-        
+
         if (player == null)
         {
             player = GameObject.FindWithTag("Player").transform; // Find the player by tag if not set
         }
-        
+
     }
 
     void Update()
     {
         nTm = gameObject.GetComponent<sillyStuff>().tm;
-        if (nTm == false){
-        MoveTowardsPlayer();
+        if (nTm == false)
+        {
+            MoveTowardsPlayer();
         }
+        transform.LookAt(player);
+
     }
 
     void MoveTowardsPlayer()
     {
-
-        var f = Vector3.Distance(transform.position, player.position);
-        if ( f > 10f){
-        gameObject.transform.LookAt(player.transform);
-        if (player != null && nTm == false)
+        float f = Vector3.Distance(transform.position, player.position);
+        
+        if (f > 10.0f)
         {
-            Vector3 direction = (player.position - transform.position).normalized;
-            transform.LookAt(player);
-            transform.position += direction * speed * Time.deltaTime;
+            //gameObject.transform.LookAt(player.transform);
+            if (player != null && nTm == false)
+            {
+                Vector3 direction = (player.position - transform.position).normalized;
+                transform.position += direction * speed * Time.deltaTime;
+            }
         }
-        } else if(!hasFired) {
-            Invoke("spawnBul", 5.0f);
+        else if (!hasFired)
+        {
+           // Vector3 direction = (player.position - transform.position).normalized;
+            transform.LookAt(player);
+            Invoke("spawnBul", 3.0f);
             hasFired = true;
 
         }
 
 
     }
-    private void spawnBul(){
+    private void spawnBul()
+    {
         GameObject bullet = ObjectPoolManager.SpawnObject(eBullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation, ObjectPoolManager.PoolType.Projectiles);
         bullet.GetComponent<enemyBullet>().SillyStuff = SillyStuff;
-        bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * bulletSpeed;  
+        bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * bulletSpeed;
         hasFired = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player") {
+        if (other.gameObject.tag == "Player")
+        {
             healthScript.TakeDamage(10);
         }
     }
