@@ -13,7 +13,7 @@ public class AxeBehaviour : MonoBehaviour
 		{
 			collision.gameObject.GetComponent<EnemyScript>().TakeDamage((int)playerStats.playerDamage);
 			playerController.Heal(playerStats.playerDamage * playerStats.playerLifeSteal);
-			collision.gameObject.GetComponent<turmoil>().turm(2f);
+			collision.gameObject.GetComponent<turmoil>().turm(0.5f);
 		}
 	}
 }
