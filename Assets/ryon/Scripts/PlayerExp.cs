@@ -54,7 +54,7 @@ public class PlayerExp : MonoBehaviour
 
     int CalculateNextLevelExperience()
     {
-        return experienceToNextLevel + 50;
+        return experienceToNextLevel + 15;
     }
 
 }

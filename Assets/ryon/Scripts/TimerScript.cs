@@ -1,11 +1,13 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class TimerScript : MonoBehaviour
 {
-    public TextMeshProUGUI timerText; // Reference to the Text component to display the timer
-    public float startTime = 600; // Starting time in seconds (10 minutes)
+    public TextMeshProUGUI timerText;
+    public float startTime = 600; 
 
 
     private float currentTime;
@@ -14,7 +16,7 @@ public class TimerScript : MonoBehaviour
     public float difficulty = 5f;
     void Start()
     {
-        // Initialize the current time
+        StartCoroutine(DecreaseDifficultyOverTime());
         currentTime = startTime;
         UpdateTimerText();
     }
@@ -23,13 +25,8 @@ public class TimerScript : MonoBehaviour
     {
         if (currentTime > 0)
         {
-            // Decrease the current time
             currentTime -= Time.deltaTime;
-
-            // Clamp the current time to ensure it doesn't go below 0
             currentTime = Mathf.Clamp(currentTime, 0, startTime);
-
-            // Update the timer text
             UpdateTimerText();
         }
         else
@@ -46,5 +43,16 @@ public class TimerScript : MonoBehaviour
 
         // Format the timer text as MM:SS
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    private IEnumerator DecreaseDifficultyOverTime()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(20); // Wait for 20 seconds
+            difficulty -= 0.1f; // Decrease difficulty by 0.1
+            difficulty = Mathf.Max(difficulty, 0); // Ensure difficulty doesn't go below 0
+            Debug.Log("Difficulty decreased to: " + difficulty);
+        }
     }
 }

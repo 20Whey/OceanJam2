@@ -4,6 +4,7 @@ public class UpgradeManager : MonoBehaviour
 {
     public UpgradeDatabase upgradeDatabase;
     public PlayerStats playerStats;
+    public HealthScript healthScript;
     void Start()
     {
     }
@@ -26,6 +27,7 @@ public class UpgradeManager : MonoBehaviour
         switch (upgrade.name) {
             case "HealthIncrease":
                 playerStats.playerMaxHealth += upgrade.value;
+                healthScript.updateNewHealth();
                 break;
             case "DamageIncrease":
                 playerStats.playerDamage += upgrade.value;

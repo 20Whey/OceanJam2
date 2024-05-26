@@ -37,8 +37,10 @@ public class HealthScript : MonoBehaviour
     public void updateNewHealth()
     {
         healthSlider.value = stats.playerHealth;
+        healthSlider.maxValue = stats.playerMaxHealth;
+
     }
 
 
-    
+
 }

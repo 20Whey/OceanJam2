@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978493cbf0918f24b8e0845d873c87f6, type: 3}
   m_Name: DashLength
   m_EditorClassIdentifier: 
-  upgradeName: 
-  description: 
-  value: 0
+  upgradeName: Increase Dash Length
+  description: Increases the distance when you dash
+  value: 1
