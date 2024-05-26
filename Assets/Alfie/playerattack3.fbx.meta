@@ -13,7 +13,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: playerskin
-    second: {fileID: 2100000, guid: c3877d7095fb1174fa4eaf6440e078de, type: 2}
+    second: {fileID: 2100000, guid: 64338190438a8624e809f19b0b114ac7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
