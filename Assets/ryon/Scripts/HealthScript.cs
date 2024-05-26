@@ -17,10 +17,6 @@ public class HealthScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            TakeDamage(10); // Add 10 experience points when the space key is pressed
-        }
     }
 
     public void TakeDamage(int damage)
