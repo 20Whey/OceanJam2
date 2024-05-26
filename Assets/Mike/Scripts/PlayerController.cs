@@ -2,6 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerAbilities
+{
+    Shoot,
+    Dash,
+    Missile,
+    Axes,
+    Grab,
+    Shield,
+}
 public class PlayerController : MonoBehaviour
 
     {
