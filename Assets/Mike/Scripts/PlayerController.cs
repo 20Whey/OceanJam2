@@ -9,9 +9,20 @@ public class PlayerController : MonoBehaviour
     public PlayerStats playerStats;
     public HealthScript healthScript;
 
+    //missile objects
+    public GameObject missilePoint;
+    public GameObject missilePrefab;
+    public bool firingMissiles = false;
+
+    //bullet objects
     public Transform bulletSpawnPoint;
     public GameObject bulletObject;
     public float bulletSpeed = 10;
+
+    private GameObject axes;
+    private GameObject shield;
+
+    public bool playerShielded = false;
 
     private float abilityTimer;
     private Vector2 moveDirection;
@@ -20,6 +31,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        axes = transform.GetChild(2).gameObject;
+        shield = transform.GetChild(3).gameObject;
         playerRB = GetComponent<Rigidbody>();
         Stunned = gameObject.GetComponent<sillyStuff>().tm;
     }
@@ -34,6 +47,12 @@ public class PlayerController : MonoBehaviour
             RotatePlayer();
             Dash();
             Shoot();
+            Axes();
+            Shield();
+            if (firingMissiles == false)
+			{
+                Missile();
+			}
         }
     }
 
@@ -86,6 +105,34 @@ public class PlayerController : MonoBehaviour
             }
         }
 	}
+
+    void Missile()
+	{
+        if (CheckIfUnlocked(PlayerAbilities.Missile) == true)
+        {
+            firingMissiles = true;
+            //InvokeRepeating("FireMissile", 2.0f, playerStats.playerMissileSpeed);
+        }
+    }
+    void Axes()
+	{
+        if (Input.GetKey(KeyCode.Q))
+        {
+            axes.SetActive(true);
+        }
+    }
+
+    void Shield()
+	{
+        if (CheckIfUnlocked(PlayerAbilities.Shield) == true)
+        {
+            shield.SetActive(true);
+        }
+    }
+    void MissileFire()
+	{
+        ObjectPoolManager.SpawnObject(missilePrefab, missilePoint.transform.position, Quaternion.identity);
+    }
 
     private bool CheckIfUnlocked(PlayerAbilities ability)
 	{

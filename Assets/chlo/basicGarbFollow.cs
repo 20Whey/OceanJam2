@@ -40,8 +40,9 @@ public class basicGarbFollow : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player") {
-            healthScript.TakeDamage(10);
+        if (other.gameObject.tag == "Player") { 
+        healthScript.TakeDamage(10); 
+
         }
     }
 }
