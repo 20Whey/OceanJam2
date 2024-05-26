@@ -74,6 +74,10 @@ public class PlayerController : MonoBehaviour
     public void Heal(float healAmount)
     {
         playerStats.playerHealth += healAmount;
+        if (playerStats.playerHealth > playerStats.playerMaxHealth)
+		{
+            playerStats.playerHealth = playerStats.playerMaxHealth;
+        }
         healthScript.updateNewHealth();
     }
     void Shoot()
@@ -111,12 +115,12 @@ public class PlayerController : MonoBehaviour
         if (CheckIfUnlocked(PlayerAbilities.Missile) == true)
         {
             firingMissiles = true;
-            //InvokeRepeating("FireMissile", 2.0f, playerStats.playerMissileSpeed);
+            InvokeRepeating("MissileFire", 2.0f, playerStats.playerMissileRate);
         }
     }
     void Axes()
 	{
-        if (Input.GetKey(KeyCode.Q))
+        if (CheckIfUnlocked(PlayerAbilities.Axes) == true)
         {
             axes.SetActive(true);
         }
