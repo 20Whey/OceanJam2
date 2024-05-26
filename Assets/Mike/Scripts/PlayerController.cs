@@ -2,15 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerAbilities
-{
-    Shoot,
-    Dash,
-    Missile,
-    Axes,
-    Grab,
-    Shield,
-}
 public class PlayerController : MonoBehaviour
 
     {
@@ -82,14 +73,29 @@ public class PlayerController : MonoBehaviour
 	}
     void Dash()
 	{
-        if (Input.GetKey(KeyCode.E))
+        if (CheckIfUnlocked(PlayerAbilities.Dash) == true)
         {
-            if (abilityTimer <= 0)
+            if (Input.GetKey(KeyCode.E))
             {
-                Debug.Log("zoom");
-                playerRB.AddForce(moveDirection * playerStats.playerDashLength, ForceMode.Impulse);
-                abilityTimer = playerStats.playerDashRate;
+                if (abilityTimer <= 0)
+                {
+                    Debug.Log("zoom");
+                    playerRB.AddForce(moveDirection * playerStats.playerDashLength, ForceMode.Impulse);
+                    abilityTimer = playerStats.playerDashRate;
+                }
             }
         }
+	}
+
+    private bool CheckIfUnlocked(PlayerAbilities ability)
+	{
+		if (playerStats.unlockedAbilities.Contains(ability))
+		{
+            return true;
+		}
+		else
+		{
+            return false;
+		}
 	}
 }
