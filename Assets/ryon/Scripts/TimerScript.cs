@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.SceneManagement;
 public class TimerScript : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
@@ -31,6 +31,7 @@ public class TimerScript : MonoBehaviour
         }
         else
         {
+            SceneManager.LoadScene("TitleScreen");
             //Debug.Log("Game Over");
         }
     }
