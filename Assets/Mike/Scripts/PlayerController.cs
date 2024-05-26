@@ -5,16 +5,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 
     {
-    public float playerHealth = 100f;
-    public float playerDamage = 10f;
-    public float playerAcceleration = 10f;
     public float playerRotateSpeed = 0.3f;
-    public float dashBoost = 0.1f;
+    public PlayerStats playerStats;
+    public HealthScript healthScript;
 
     public Transform bulletSpawnPoint;
     public GameObject bulletObject;
     public float bulletSpeed = 10;
 
+    private float abilityTimer;
     private Vector2 moveDirection;
     private Rigidbody playerRB;
     private bool Stunned;
@@ -28,18 +27,19 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (abilityTimer > 0) abilityTimer -= Time.deltaTime;
         if (!Stunned)
         {
-        moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
-        RotatePlayer();
-        Dash();
-        Shoot();
+            moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+            RotatePlayer();
+            Dash();
+            Shoot();
         }
     }
 
 	void FixedUpdate()
 	{
-        playerRB.AddForce(moveDirection * playerAcceleration);
+        playerRB.AddForce(moveDirection * playerStats.playerMoveSpeed);
 	}
 
     void RotatePlayer()
@@ -52,19 +52,35 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, rotateAngle, playerRotateSpeed);
     }
 
+    public void Heal(float healAmount)
+    {
+        playerStats.playerHealth += healAmount;
+        healthScript.updateNewHealth();
+    }
     void Shoot()
 	{
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKey(KeyCode.Mouse1))
 		{
-            GameObject bullet = ObjectPoolManager.SpawnObject(bulletObject, bulletSpawnPoint.position, bulletSpawnPoint.rotation, ObjectPoolManager.PoolType.Projectiles);
-            bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.up * bulletSpeed;
+            if (abilityTimer <= 0)
+            {
+                GameObject bullet = ObjectPoolManager.SpawnObject(bulletObject, bulletSpawnPoint.position, bulletSpawnPoint.rotation, ObjectPoolManager.PoolType.Projectiles);
+                bullet.GetComponent<BulletBehavior>().playerStats = playerStats;
+                bullet.GetComponent<BulletBehavior>().playerController = this;
+                bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.up * bulletSpeed;
+                abilityTimer = playerStats.playerFireRate;
+            }
 		}
 	}
     void Dash()
 	{
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.E))
         {
-            playerRB.AddForce(moveDirection * dashBoost, ForceMode.Impulse);
+            if (abilityTimer <= 0)
+            {
+                Debug.Log("zoom");
+                playerRB.AddForce(moveDirection * playerStats.playerDashLength, ForceMode.Impulse);
+                abilityTimer = playerStats.playerDashRate;
+            }
         }
 	}
 }

@@ -247,11 +247,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2db84655411274ea76d956f5722f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 100
-  playerDamage: 10
-  playerAcceleration: 10
   playerRotateSpeed: 0.3
-  dashBoost: 1.5
+  playerStats: {fileID: 1750429309}
+  healthScript: {fileID: 1687560056}
   bulletSpawnPoint: {fileID: 41234184}
   bulletObject: {fileID: 4826430837646890223, guid: d37f16046174ed243a2f8e133c71dc2a, type: 3}
   bulletSpeed: 20
@@ -8207,7 +8205,10 @@ MonoBehaviour:
   playerMaxHealth: 100
   playerLifeSteal: 0
   playerDamage: 10
-  playerMoveSpeed: 0
+  playerMoveSpeed: 10
+  playerDashLength: 8
+  playerDashRate: 1
+  playerFireRate: 1
 --- !u!114 &1750429310
 MonoBehaviour:
   m_ObjectHideFlags: 0

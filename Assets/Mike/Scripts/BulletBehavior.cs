@@ -6,6 +6,8 @@ public class BulletBehavior : MonoBehaviour
 {
 	[SerializeField] private float destroyTime = 1f;
 	private Coroutine _returnToPoolTimer;
+	public PlayerStats playerStats;
+	public PlayerController playerController;
 
 	private void OnEnable()
 	{
@@ -26,7 +28,8 @@ public class BulletBehavior : MonoBehaviour
 	{
 		if (collision.transform.tag == "Enemy")
 		{
-			collision.gameObject.GetComponent<EnemyScript>().TakeDamage(5);
+			collision.gameObject.GetComponent<EnemyScript>().TakeDamage((int)playerStats.playerDamage);
+			playerController.Heal(playerStats.playerDamage * playerStats.playerLifeSteal);
 			ObjectPoolManager.ReturnObjectToPool(gameObject);
 		}
 	}
