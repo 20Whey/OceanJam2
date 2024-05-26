@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using rand=UnityEngine.Random;
 public class startScriptForMin : MonoBehaviour
 {
 
@@ -9,11 +9,12 @@ public class startScriptForMin : MonoBehaviour
     public GameObject targ;
     public Rigidbody rb;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        targ = GameObject.Find("Player");
         rb = gameObject.GetComponent<Rigidbody>();
         gameObject.transform.LookAt(targ.transform.position);
-        rb.AddForce(transform.forward * vel * 30);
+        rb.AddForce(transform.forward * vel * 20);
         rb.AddTorque(-transform.up * 3f * Random.Range(10, 20));
         rb.AddTorque(transform.right * 3f * Random.Range(10, 20));
     }
@@ -28,7 +29,7 @@ void OnCollisionEnter(Collision collision)
             Debug.Log("damag" + contact.point);
             var gm = contact.otherCollider.gameObject;
             gm.GetComponent<sillyStuff>().healthGetter(gm.name, 10);
-            gm.GetComponent<turmoil>().targ = contact.point * 2;
+            gm.GetComponent<turmoil>().targ = new Vector3((float)rand.Range(-10, 10), (float)rand.Range(-10, 10), 0f);
             gm.GetComponent<turmoil>().turm(3f);
 /*
 code for cancelling player movement

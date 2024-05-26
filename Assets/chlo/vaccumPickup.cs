@@ -12,9 +12,9 @@ public class VacuumPickup : MonoBehaviour
     {
         var target = gameObject.transform;
         float elapsedTime = 0;
-        float timeToMove = 25.0f;
+        float timeToMove = 2.0f;
 
-        while (item.transform.position != target.position)
+        while (elapsedTime < timeToMove)
         {
             float t = elapsedTime / timeToMove;
             item.transform.position = new Vector3(

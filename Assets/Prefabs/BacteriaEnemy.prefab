@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d390fd2df19cf40bace24bee5894b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dmg: 0
   tm: 0
   isBub: 0
 --- !u!65 &6664078991660078862
@@ -146,7 +147,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -196,6 +197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26f555bc08302344eadba78a4d4c20cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vel: 0
+  vel: 1
   turnToReg: 0
   targ: {x: 0, y: 0, z: 0}
