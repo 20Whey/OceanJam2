@@ -219,7 +219,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0.3
-  m_AngularDrag: 1
+  m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -8412,7 +8412,7 @@ MonoBehaviour:
   playerDashLength: 8
   playerDashRate: 1
   playerFireRate: 1
-  playerRotationSpeed: 0.5
+  playerRotationSpeed: 4.21
   playerProjectileSpeed: 1
   playerMissileRate: 7
   playerShieldLevel: 0
