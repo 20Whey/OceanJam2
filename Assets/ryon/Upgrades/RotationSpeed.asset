@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 978493cbf0918f24b8e0845d873c87f6, type: 3}
-  m_Name: DamageIncrease
+  m_Name: RotationSpeed
   m_EditorClassIdentifier: 
-  upgradeName: Increase Damage
-  description: Damage is increased by 10
-  value: 10
+  upgradeName: Increase Rotation Speed
+  description: Player rotation speed increased
+  value: 1

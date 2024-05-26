@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: HealthIncrease
   m_EditorClassIdentifier: 
   upgradeName: Increase Health
-  description: Health is increased by ${Value}
+  description: Health is increased by 25
   value: 25
