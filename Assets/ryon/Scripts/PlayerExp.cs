@@ -20,10 +20,6 @@ public class PlayerExp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            AddExperience(10); // Add 10 experience points when the space key is pressed
-        }
     }
 
     void UpdateExperienceBar()
