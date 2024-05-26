@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private float abilityTimer;
     private Vector2 moveDirection;
     private Rigidbody playerRB;
-    private bool Stunned;
+    public bool Stunned;
 
     void Start()
     {

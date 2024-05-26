@@ -41,15 +41,17 @@ public class turmoil : MonoBehaviour
             elpsedT += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
-        StartCoroutine(Return(3f, 0.1f));
+        StartCoroutine(Return(3f, 1f));
     }
     public void turm(float del)
     {
         gameObject.GetComponent<sillyStuff>().tm = true;
         gameObject.transform.LookAt(targ);
         rb.AddForce(transform.forward * vel * 30);
+        if (gameObject.name.Contains("Enemy")){
         rb.AddTorque(-transform.up * 3f * Random.Range(-10, 10));
         rb.AddTorque(transform.right * 3f * Random.Range(-10, 10));
+        }
         StartCoroutine(Delay(del));
     }
     void Awake()
