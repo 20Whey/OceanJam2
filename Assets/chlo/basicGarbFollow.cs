@@ -6,9 +6,11 @@ public class basicGarbFollow : MonoBehaviour
     public Transform player; // Reference to the player's transform
     public float speed = 5f; // Speed of the enemy movement
     private bool nTm;
+    private int enemyDamage;
     public HealthScript healthScript;
     void Start()
     {
+        enemyDamage = 10;
 
         healthScript = GameObject.FindGameObjectWithTag("Health").GetComponent<HealthScript>();
         if (player == null)
@@ -40,9 +42,8 @@ public class basicGarbFollow : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player") { 
-        healthScript.TakeDamage(10); 
-
+        if (other.gameObject.tag == "Player") {
+            healthScript.TakeDamage(enemyDamage);
         }
     }
 }
