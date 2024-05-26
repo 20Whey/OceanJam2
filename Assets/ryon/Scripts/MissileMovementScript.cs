@@ -4,7 +4,7 @@ public class MissileMovementScript : MonoBehaviour
 {
     public float moveSpeed = 5f; // Speed at which to move towards the enemy
     public int damage;
-    private GameObject[] enemies;
+    public GameObject[] enemies;
     private Transform targetEnemy;
     void Start()
     {

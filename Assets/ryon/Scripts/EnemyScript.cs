@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
-    public GameObject expDrop;
+    public GameObject[] expDrop;
     public int health;
     // Start is called before the first frame update
     void Start()
@@ -28,7 +28,7 @@ public class EnemyScript : MonoBehaviour
 
         if (health <= 0)
         {
-            Instantiate(expDrop, gameObject.transform.position, gameObject.transform.rotation);
+            Instantiate(expDrop[Random.Range(0,2)], gameObject.transform.position, gameObject.transform.rotation);
             Destroy(gameObject);
         }
     }

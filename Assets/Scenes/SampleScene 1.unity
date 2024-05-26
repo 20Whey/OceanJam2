@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6389,7 +6389,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -8175,7 +8175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37511e53f03051348b47f5a6e7f2dfe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 2642642300316502237, guid: 94e33326a5815144ab0f4d9358c713c7, type: 3}
+  enemyPrefab: {fileID: 3559127691612967077, guid: 8aa067987ca38ce48ae2935d510922f1, type: 3}
   cameraBoundsCalculator: {fileID: 963194229}
   spawnDistance: 10
   timerScript: {fileID: 1343664648}
