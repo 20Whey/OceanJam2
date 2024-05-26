@@ -26,13 +26,14 @@ public class bubbleBehav : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         
-        item.GetComponent<turmoil>().targ = new Vector3((float)rand.Range(-3, 3), (float)rand.Range(-3, 3), 0f);
+        item.GetComponent<turmoil>().targ = new Vector3((float)rand.Range(-10, 10), (float)rand.Range(-10, 10), 0f);
         item.GetComponent<turmoil>().turm(3f);
         
     }
 
     void Start()
     {
+        targ = GameObject.Find("Player").transform;
         rb = gameObject.GetComponent<Rigidbody>();
         gameObject.transform.LookAt(targ.transform.position);
         rb.AddForce(transform.forward * 1f * 30);
@@ -54,7 +55,7 @@ public class bubbleBehav : MonoBehaviour
     }
     void Update()
     {
-        nearbyColliders = Physics.OverlapSphere(transform.position, rad, 3);
+        nearbyColliders = Physics.OverlapSphere(transform.position, rad, 7);
 
         if (nearbyColliders != null)
         {

@@ -5,6 +5,8 @@ using UnityEngine;
 public class sillyStuff : MonoBehaviour
 {
 
+    
+    public int dmg;
     public bool tm;
     public bool isBub;
     private bool coRot;
@@ -13,6 +15,8 @@ public class sillyStuff : MonoBehaviour
 
 void Start () {
 
+
+   
     tm = false;
     isBub = false;
     coRot = false;
