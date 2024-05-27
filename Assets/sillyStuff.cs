@@ -12,11 +12,11 @@ public class sillyStuff : MonoBehaviour
     private bool coRot;
     private bool wontColl;
 
+    private GameObject plyrHP;
+
 
 void Start () {
-
-
-   
+    plyrHP = GameObject.Find("Health");
     tm = false;
     isBub = false;
     coRot = false;
@@ -40,7 +40,7 @@ void Start () {
         if(!wontColl){
         switch(name){
             case "Player":
-            gameObject.GetComponent<HealthScript>().TakeDamage(amount);
+            plyrHP.GetComponent<HealthScript>().TakeDamage(amount);
             reactiveBub();
             break;
         
