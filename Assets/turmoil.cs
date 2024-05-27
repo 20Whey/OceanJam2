@@ -46,6 +46,7 @@ public class turmoil : MonoBehaviour
     public void turm(float del)
     {
         gameObject.GetComponent<sillyStuff>().tm = true;
+        targ.z = 0;
         gameObject.transform.LookAt(targ);
         rb.AddForce(transform.forward * vel * 30);
         if (gameObject.name.Contains("Enemy")){
